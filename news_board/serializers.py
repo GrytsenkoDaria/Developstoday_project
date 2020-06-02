@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'email')
+        fields = ('id', 'username', 'password', 'email')
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -37,7 +37,8 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'link', 'num_upvotes', 'author', 'creation_date'
+            'id', 'title', 'link', 'num_upvotes',
+            'author_name', 'creation_date'
         ]
         extra_kwargs = {
             'num_upvotes': {'read_only': True},

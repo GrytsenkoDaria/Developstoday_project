@@ -1,0 +1,206 @@
+[
+{
+  "model": "news_board.post",
+  "pk": 4,
+  "fields": {
+    "title": "Test",
+    "link": "https://www.digitalocean.com/community/tutorials/",
+    "creation_date": "2020-06-02T14:47:00.307Z",
+    "author": 1,
+    "upvote": [
+      5
+    ]
+  }
+},
+{
+  "model": "news_board.post",
+  "pk": 5,
+  "fields": {
+    "title": "Test_2",
+    "link": "https://www.digitalocean.com/community/",
+    "creation_date": "2020-06-02T14:47:43.330Z",
+    "author": 1,
+    "upvote": [
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "news_board.post",
+  "pk": 6,
+  "fields": {
+    "title": "Using variables",
+    "link": "https://learning.postman.com/docs/postman/variables-and-environments/variables/#understanding-variables-and-environments",
+    "creation_date": "2020-06-02T20:12:23.795Z",
+    "author": 1,
+    "upvote": [
+      5
+    ]
+  }
+},
+{
+  "model": "news_board.post",
+  "pk": 7,
+  "fields": {
+    "title": "Django and Static Assets",
+    "link": "https://devcenter.heroku.com/articles/django-assets",
+    "creation_date": "2020-06-02T20:13:08.472Z",
+    "author": 1,
+    "upvote": [
+      1,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "news_board.post",
+  "pk": 8,
+  "fields": {
+    "title": "Writing custom django-admin commands",
+    "link": "https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/",
+    "creation_date": "2020-06-02T20:50:29.837Z",
+    "author": 4,
+    "upvote": [
+      4
+    ]
+  }
+},
+{
+  "model": "news_board.post",
+  "pk": 9,
+  "fields": {
+    "title": "django-rest-auth: API endpoints",
+    "link": "https://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html#basic",
+    "creation_date": "2020-06-02T20:51:38.766Z",
+    "author": 4,
+    "upvote": [
+      4
+    ]
+  }
+},
+{
+  "model": "news_board.post",
+  "pk": 10,
+  "fields": {
+    "title": "Understanding Programs Using Graphs",
+    "link": "https://engineering.shopify.com/blogs/engineering/understanding-programs-using-graphs",
+    "creation_date": "2020-06-02T20:53:23.225Z",
+    "author": 5,
+    "upvote": [
+      4
+    ]
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 8,
+  "fields": {
+    "author": 1,
+    "content": "Sample",
+    "creation_date": "2020-06-02T20:56:13.825Z",
+    "post": 4
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 9,
+  "fields": {
+    "author": 1,
+    "content": "Another sample",
+    "creation_date": "2020-06-02T20:56:25.567Z",
+    "post": 4
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 10,
+  "fields": {
+    "author": 1,
+    "content": "One more sample",
+    "creation_date": "2020-06-02T20:56:37.969Z",
+    "post": 5
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 11,
+  "fields": {
+    "author": 1,
+    "content": "And one more sample",
+    "creation_date": "2020-06-02T20:56:47.032Z",
+    "post": 5
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 12,
+  "fields": {
+    "author": 1,
+    "content": "And one more sample",
+    "creation_date": "2020-06-02T20:56:54.206Z",
+    "post": 6
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 13,
+  "fields": {
+    "author": 1,
+    "content": "And onother one sample",
+    "creation_date": "2020-06-02T20:57:05.059Z",
+    "post": 6
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 14,
+  "fields": {
+    "author": 1,
+    "content": "And onother one more sample",
+    "creation_date": "2020-06-02T20:57:14.602Z",
+    "post": 7
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 15,
+  "fields": {
+    "author": 1,
+    "content": "Sample",
+    "creation_date": "2020-06-02T20:57:21.318Z",
+    "post": 7
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 16,
+  "fields": {
+    "author": 1,
+    "content": "Sample",
+    "creation_date": "2020-06-02T20:57:24.362Z",
+    "post": 8
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 17,
+  "fields": {
+    "author": 1,
+    "content": "Sample",
+    "creation_date": "2020-06-02T20:57:27.428Z",
+    "post": 9
+  }
+},
+{
+  "model": "news_board.comment",
+  "pk": 18,
+  "fields": {
+    "author": 1,
+    "content": "Sample",
+    "creation_date": "2020-06-02T20:57:30.400Z",
+    "post": 10
+  }
+}
+]
