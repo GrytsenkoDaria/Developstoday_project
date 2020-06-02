@@ -3,11 +3,13 @@ from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 
 from .views import (
-    PostView, UpvoteView, CommentView, UserCreationView, UserLogoutView
+    PostView, UpvoteView, CommentView, UserCreationView, UserLogoutView, home
 )
 
 
 urlpatterns = [
+    path('', home),
+
     path('registration/', UserCreationView.as_view()),
     path('login/', obtain_auth_token),
     path('logout/', UserLogoutView.as_view()),
