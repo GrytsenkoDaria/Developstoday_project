@@ -7,9 +7,9 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from .serializers import (
-    PostSerializer, UpvoteSerializer, CommentSerializer, UserSerializer
+    PostSerializer, CommentSerializer, UserSerializer
 )
-from .models import Post, Comment, Upvote
+from .models import Post, Comment
 
 
 class UserCreationView(generics.CreateAPIView):
@@ -59,7 +59,7 @@ class UpvoteView(generics.ListAPIView):
     '''
 
     permission_classes = [IsAuthenticated]
-    serializer_class = UpvoteSerializer
+    serializer_class = PostSerializer
 
     def get_queryset(self):
         user = self.request.user
@@ -68,10 +68,8 @@ class UpvoteView(generics.ListAPIView):
 
         if user in post.upvote.all():
             post.upvote.remove(user)
-            Upvote.objects.filter(post_id=post_id, user=user).delete()
         else:
             post.upvote.add(user)
-            Upvote.objects.create(post_id=post_id, user=user)
 
 
 class CommentView(generics.ListAPIView):

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from .models import Post, Upvote, Comment
+from .models import Post, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -40,10 +40,6 @@ class PostSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'link', 'num_upvotes', 'author', 'creation_date'
         ]
-        # extra_kwargs = {
-        #     'num_upvotes': {'read_only': True},
-        #     'author': {'read_only': True},
-        # }
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -63,12 +59,3 @@ class CommentSerializer(serializers.ModelSerializer):
 
         comment = super().create(validated_data)
         return comment
-
-
-class UpvoteSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-    post = PostSerializer()
-
-    class Meta:
-        model = Upvote
-        fields = '__all__'
