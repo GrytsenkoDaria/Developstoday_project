@@ -22,6 +22,10 @@ class Post(models.Model):
     def num_upvotes(self):
         return self.upvote.all().count()
 
+    @property
+    def author_name(self):
+        return self.author.username
+
 
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
