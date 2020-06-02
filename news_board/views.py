@@ -7,7 +7,8 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from .serializers import (
-    PostSerializer, CommentSerializer, UserSerializer
+    PostSerializer, PostCreateSerializer,
+    CommentSerializer, CommentCreateSerializer, UserSerializer
 )
 from .models import Post, Comment
 
@@ -50,7 +51,7 @@ class PostCreateView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    serializer_class = PostCreateSerializer
 
 
 class UpvoteView(generics.ListAPIView):
@@ -90,7 +91,7 @@ class CommentCreateView(generics.CreateAPIView):
     Creats a comment to a particular post.
     '''
     permission_classes = [IsAuthenticated]
-    serializer_class = CommentSerializer
+    serializer_class = CommentCreateSerializer
 
     def get_queryset(self):
         queryset = Comment.objects.filter(post_id=self.kwargs['pk'])

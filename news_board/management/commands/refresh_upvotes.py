@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand
-from news_board.models import Upvote
+from news_board.models import Post
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        Upvote.objects.all().delete()
+        posts = Post.objects.all()
+        for post in posts:
+            post.upvote.clear()

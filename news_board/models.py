@@ -20,7 +20,7 @@ class Post(models.Model):
 
     @property
     def num_upvotes(self):
-        return self.upvotes.all().count()
+        return self.upvote.all().count()
 
 
 class Comment(models.Model):

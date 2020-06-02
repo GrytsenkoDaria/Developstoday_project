@@ -23,7 +23,6 @@ class PostCreateSerializer(serializers.ModelSerializer):
             'id', 'title', 'link', 'num_upvotes', 'author', 'creation_date'
         ]
         extra_kwargs = {
-            'num_upvotes': {'read_only': True},
             'author': {'read_only': True},
         }
 
@@ -40,9 +39,22 @@ class PostSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'link', 'num_upvotes', 'author', 'creation_date'
         ]
+        extra_kwargs = {
+            'num_upvotes': {'read_only': True},
+            'author': {'read_only': True},
+        }
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['id', 'author', 'content', 'creation_date']
+        extra_kwargs = {
+            'author': {'read_only': True},
+        }
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['id', 'author', 'content', 'creation_date']
