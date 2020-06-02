@@ -32,9 +32,20 @@ class UserLogoutView(generics.GenericAPIView):
         return Response(status=status.HTTP_204_no_content)
 
 
-class PostView(generics.ListCreateAPIView):
+class PostView(generics.ListAPIView):
     '''
-    Creats post and provide a list of all created posts.
+    Provide a list of all created posts.
+    '''
+    authentication_classes = []
+    permission_classes = []
+
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+class PostCreateView(generics.CreateAPIView):
+    '''
+    Creats post.
     '''
     permission_classes = [IsAuthenticated]
 
@@ -63,7 +74,20 @@ class UpvoteView(generics.ListAPIView):
             Upvote.objects.create(post_id=post_id, user=user)
 
 
-class CommentView(generics.ListCreateAPIView):
+class CommentView(generics.ListAPIView):
+    '''
+    Shows all comments to a particular post.
+    '''
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        queryset = Comment.objects.filter(post_id=self.kwargs['pk'])
+        return queryset
+
+
+class CommentCreateView(generics.CreateAPIView):
     '''
     Creats a comment to a particular post.
     '''

@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
@@ -32,6 +32,18 @@ class PostSerializer(serializers.ModelSerializer):
         validated_data['author_id'] = author_id
         post = super().create(validated_data)
         return post
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = [
+            'id', 'title', 'link', 'num_upvotes', 'author', 'creation_date'
+        ]
+        # extra_kwargs = {
+        #     'num_upvotes': {'read_only': True},
+        #     'author': {'read_only': True},
+        # }
 
 
 class CommentSerializer(serializers.ModelSerializer):
