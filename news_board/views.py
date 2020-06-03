@@ -64,7 +64,7 @@ class UpvoteView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        post_id = self.kwargs.get('post_pk')
+        post_id = self.kwargs['pk']
         post = Post.objects.get(id=post_id)
 
         if user in post.upvote.all():

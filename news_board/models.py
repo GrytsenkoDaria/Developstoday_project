@@ -34,6 +34,10 @@ class Comment(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
+    @property
+    def author_name(self):
+        return self.author.username
+
 
 @receiver(post_save, sender=User)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
