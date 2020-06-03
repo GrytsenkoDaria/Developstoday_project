@@ -7,18 +7,20 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news_board', '0001_initial'),
+        ("news_board", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='post',
-            old_name='upvotes',
-            new_name='upvote',
+            model_name="post", old_name="upvotes", new_name="upvote",
         ),
         migrations.AlterField(
-            model_name='upvote',
-            name='post',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='upvotes', to='news_board.Post'),
+            model_name="upvote",
+            name="post",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="upvotes",
+                to="news_board.Post",
+            ),
         ),
     ]
