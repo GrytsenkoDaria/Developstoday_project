@@ -18,7 +18,7 @@ Inside the created dir you should create a virtual environment using `pyenv`
 >For more details concerning pyenv installation have a look on [these](https://github.com/pyenv/pyenv) link.
 
 ```
-pyenv virtualenv <env_name>
+pyenv virtualenv 3.7.6 <env_name>
 pyenv local <env_name>
 ```
 Inside your environmet you should install all packages and modules:
@@ -29,11 +29,11 @@ After all modules are installed successfully go to further steps.
 
 ### Main settings
 
-Now we need to to set up all the setting to the project.
+Now we need to set up all the setting to the project.
 
 ### 1. Setting up the settings.py
 
-Firstly, you should set up all the setting for the project. In the directory `developstoday/settings/` there is two seettings files:
+Firstly, you should set up all the setting for the project. In the directory `developstoday/settings/` there are two seettings files:
 - **local_settings.example**
 - **production.py**
 
@@ -55,7 +55,7 @@ DATABASE_URL=psql://<username>:<password>@127.0.0.1:5432/<db_name>
 
 ### 3. Migrations
 
-As your DB is not created yet and you alredy have all the migrations on your project, you should run these migrations:
+As your DB is not created yet and you alredy have all the migrations in your project, you should run these migrations:
 ```
 python manage.py migrate
 ```
@@ -67,27 +67,62 @@ If it successeded you should have a basic database created and can try to lainch
 
 All the needed settings to deploy are already setted up in the projects. These are:
 
-- requirements.txt
-- production.py
-- Procfile
+- *requirements.txt*
+- *production.py*
+- *Procfile*
 
 **To deploy existing projects on Heroku using Github we need to:**
 1. Have an account on [Heroku](https://www.heroku.com/)
-2. On the [website](https://dashboard.heroku.com/apps) find the button Create New App and fill all the fields.
-3. After creating the App choose the tab `Deploy` and there the field `Deployment method`. 
-   Here for more convinient way choose `GitHub` and choose the repo name.
-> I describe the way I was doing it. Surely, if another person is going to deploy this project it is better to use Heroku CLI.
-4. After connecting the GitHub and Heroku you shoul in the field `Manual deploy` choose the branch to deploy (`master` as for me) and push `Deploy branch`.
-5. 
+2. On the [website](https://dashboard.heroku.com/apps) find the button `Create New App` and fill all the fields.
+3. On the tab `Resources` find the field `Add-ons` where we need to downdload `Heroku Postgres` as our DB.
+4. Go to tab `Settings` and in field `Config Vars` press `Reveal Config Vars`.
+   Here we should fill `Config Vars` with our variables in `production.py`:
+   ```
+   DATABASE_URL ---> URL created by Heroku
+   DJANGO_ALLOWED_HOSTS ---> <your_app_name>.herokuapp.com
+   DJANGO_SECRET_KEY ---> <your_secret_key> from `production.py`
+   ```
+5. Choose the tab `Deploy` and there the field `Deployment method`. 
+   Here for more convinient way choose `GitHub` and select the repo name.
+   > I describe the way I was doing it. Surely, if another person is going to deploy this project it is better to use Heroku CLI.
+6. After connecting the GitHub and Heroku you should in the field `Manual deploy` choose the branch to deploy (`master` as for me) and push `Deploy branch`.
+7. The next step is to migrate all the migrations in our project.
+   On the tab `Settings` right upper corner find button `More` and select `Run console`.
+8. In the console run this code:
+   ```
+   python manage.py migrate
+   ```
+9. To fiil out our service with data a dump file `mydata.json` was made. To download the data on Heroku open a console (see previous step) and run command:
+   ```
+   python manage.py loaddata mydata.json
+   ```
+   > Some errors mey occur on this step as while previous migrations were made, some users may alredy were created, which differs from our DB.
+10. To try if everything works go on the link [Developstoday_project](https://developstoday-project.herokuapp.com/posts/) and have a look on a list of posts.
+
+Additionaly:
+- As with `Heroku Postgres` you should download `Heroku Scheduler` where there is an option to run a particular script periodicaly.
+- After downloading you should push the button `Add Job` and in the field `Run Command` add:
+   ```
+   python manage.py refresh_upvotes
+   ```
+   and set the `Schedule` to `Every day at 12:00 PM`
+
+## Postman collection
+
+For more convinient REST requests testing there were created a `Developstoday collection` inside the Postman with list of variables and directories.
+As embed link to the collection you can use [this](https://www.getpostman.com/collections/f709a38bba5d63c205d4).
+Every element of the collection is documented inside the collection in the `description` field.  
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Black](https://github.com/psf/black) - Python code formatter
+* [flake8](https://github.com/PyCQA/flake8) - Toolkit for checking the code base against coding style (PEP8) and programming errors
+* [Postman](https://www.postman.com/) - Used to send REST requests directly within Postman
+* [Postgres](https://www.postgresql.org/) - Open source object-relational database system
+* [Heroku](https://www.heroku.com/) - A cloud platform that lets to build, deliver, monitor and scale apps
+* [Visual Studio Code](https://code.visualstudio.com/) - Source code editor
 
-## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+
+> All of the deployment settings and deployment as it is, were done for the first time. Some bugs and error may occur by following all the way in this `README.doc` file, for what I beg you a pardon!
+
