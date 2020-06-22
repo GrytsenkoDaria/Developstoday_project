@@ -16,6 +16,7 @@ cd <repodir>
 ```
 Inside the created dir you should create a virtual environment using `pyenv`
 >For more details concerning pyenv installation have a look on [these](https://github.com/pyenv/pyenv) link.
+>To see all pyenv commands: [here](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md#pyenv-local)
 
 ```
 pyenv virtualenv 3.7.6 <env_name>
